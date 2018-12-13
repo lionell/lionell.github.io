@@ -1,0 +1,41 @@
+---
+layout: default
+title: "Projects"
+---
+
+<div id="home">
+	<div class="projects">
+		{% assign sorted_projects = site.projects | sort: 'order' %}
+		{% for project in sorted_projects limit:10 %}
+			<div class="project">
+  			<h3 class="project-title">
+					<a href="{{ project.github | prepend: 'https://github.com/lionell' }}">
+						{{ project.title }}
+					</a>
+				</h3>
+
+				<img src="{{ project.img | prepend: '/assets/img' | prepend: site.baseurl | prepend: site.url }}" class="project-img"/>
+
+				<p class="project-meta">
+					{% if (project.tags.size > 0 %}
+						<span class="categories">
+							{{ project.tags | array_to_sentence_string }}
+						</span>
+					{% endif %}
+				</p>
+
+				<p>
+					{{ project.excerpt }}
+				</p>
+				<p>
+					<a href="{{ project.github | prepend: 'https://github.com/lionell' }}" title="{{ project.title }}">
+						See on GitHub
+					</a>
+				</p>
+			</div>
+		{% endfor %}
+	</div>
+	<div class="project-footer">
+		<div class="column-full"><a href="#">Comming soon!</a></div>
+	</div>
+</div>
